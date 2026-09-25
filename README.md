@@ -1,95 +1,158 @@
-# Agribusiness Data Modeling & SQL
+# 🌾 Agribusiness Data Modeling & SQL
 
-A relational database project developed as part of the **SQL Data Analyst – Agribusiness Internship** under the **Henry Harvin Yuva Intern Program**.
+A relational database project developed for the **SQL Data Analyst – Agribusiness Internship** under the **Henry Harvin Yuva Intern Program**.
 
-## Project Overview
+The project models a realistic agribusiness operation using **MySQL**, connecting farms, crops, production activities, agricultural inputs, costs, markets, buyers, and sales into a structured relational database.
 
-This project focuses on designing a relational database model for agribusiness operations and developing SQL queries to support common business and analytical needs.
+---
 
-The database represents different areas of an agribusiness operation, including:
+## 📌 Project Overview
 
-* Farm management
-* Crop production
-* Agricultural inputs
-* Production costs
-* Sales
-* Markets and buyers
-* Seasons and production years
-* Business performance analysis
+Agribusiness operations involve different types of information that need to work together, from farm and crop production to input expenses and market sales.
 
-The database was developed using **MySQL** with primary and foreign keys to establish relationships between the tables.
+This project was designed to create a database that can answer practical business questions such as:
 
-## Database Model
+* Which crops have the highest production?
+* Which farms produce the most?
+* How does production change across years?
+* Which production activities have the highest costs?
+* Which inputs contribute the most to input costs?
+* Which markets generate the highest sales revenue?
 
-The database contains 11 related tables:
+The database was designed with **primary keys, foreign keys, and relational tables** so that information can be connected and analyzed efficiently using SQL.
 
-| Table         | Purpose                                        |
-| ------------- | ---------------------------------------------- |
-| `location`    | Stores state and district information          |
-| `farm`        | Stores farm information                        |
-| `crop`        | Stores crop details and crop types             |
-| `season`      | Stores agricultural seasons                    |
-| `production`  | Records crop production activities             |
-| `input`       | Stores agricultural input information          |
-| `input_usage` | Records inputs used for production             |
-| `cost`        | Records production-related expenses            |
-| `market`      | Stores selling market information              |
-| `buyer`       | Stores buyer information                       |
-| `sale`        | Records sales, quantities, prices, and revenue |
+---
 
-The `production` table acts as a central table for connecting farms, crops, seasons, inputs, costs, and sales.
+## 🗂️ Database Structure
 
-## SQL Analysis
-
-Six business-focused SQL queries were developed to analyze:
-
-1. Total production by crop
-2. Total production by farm
-3. Total production by year
-4. Total cost by production record
-5. Total input usage cost
-6. Total sales revenue by market
-
-The queries use SQL joins, aggregate functions, grouping, and ordering to answer common agribusiness business questions.
-
-## Testing and Optimization
-
-The SQL queries were tested in **MySQL Workbench**.
-
-The `explain` command was also used to examine the execution plan of a sample query and verify how the database accessed the related tables.
-
-## Entity Relationship Diagram
-
-The project includes an ER diagram showing the tables, primary keys, foreign keys, and relationships within the database.
-
-## Project Files
+The database contains **11 related tables**:
 
 ```text
-sql/
-    week2_agribusiness.sql
-
-er-diagram/
-    agribusiness_er_diagram.png
-
-report/
-    Week_2_Project_Report.docx
+Location
+   │
+   ├── Farm
+   │      │
+   │      └── Production ─── Crop
+   │             │
+   │             ├── Season
+   │             ├── Input Usage ─── Input
+   │             ├── Cost
+   │             └── Sale
+   │                    ├── Market
+   │                    └── Buyer
+   │
+   └── Market
 ```
 
-## Tools Used
+### Tables
 
-* MySQL
-* MySQL Workbench
-* SQL
-* diagrams.net (draw.io)
-* Google Docs
+| Table         | Description                                      |
+| ------------- | ------------------------------------------------ |
+| `location`    | State and district information                   |
+| `farm`        | Farm details and farm area                       |
+| `crop`        | Crop names and crop types                        |
+| `season`      | Agricultural seasons                             |
+| `production`  | Crop production records                          |
+| `input`       | Seeds, fertilizers, pesticides, and other inputs |
+| `input_usage` | Inputs used and their associated costs           |
+| `cost`        | Production-related expenses                      |
+| `market`      | Agricultural markets                             |
+| `buyer`       | Buyers and buyer types                           |
+| `sale`        | Sales, quantities, prices, and revenue           |
 
-## Internship
+The **production** table acts as the central table for connecting farm-level crop activities with inputs, costs, and sales.
+
+---
+
+## 📊 SQL Analysis
+
+Six business-focused queries were developed using SQL aggregation, joins, grouping, and ordering.
+
+### The analysis covers:
+
+**🌱 Crop Performance**
+Total production by crop
+
+**🚜 Farm Performance**
+Total production by farm
+
+**📅 Production Trends**
+Total production by year
+
+**💰 Production Costs**
+Total cost associated with each production record
+
+**🧪 Input Costs**
+Total usage cost by agricultural input
+
+**🏪 Market Revenue**
+Total sales revenue generated by each market
+
+### Sample finding
+
+In the project dataset:
+
+* **Wheat** recorded the highest total production.
+* **Sunrise Agro Farm** recorded the highest total production among farms.
+* Total production was higher in **2025** than in 2024.
+* **DAP Fertilizer** had the highest total usage cost.
+* **Karnal Grain Market** generated the highest total sales revenue.
+
+---
+
+## 🔍 SQL Testing & Optimization
+
+The developed queries were tested in **MySQL Workbench**.
+
+The `explain` command was used to inspect the execution plan of a sample analytical query and understand how MySQL accessed the related tables.
+
+The execution plan was considered appropriate for the current dataset, so no additional optimization was required.
+
+---
+
+## 🖼️ Entity Relationship Diagram
+
+The project includes an ER diagram representing the database structure, primary keys, foreign keys, and relationships between the 11 tables.
+
+![Agribusiness ER Diagram](er-diagram/agribusiness_er_diagram.png)
+
+---
+
+## 📁 Repository Structure
+
+```text
+agribusiness-data-modeling-sql/
+│
+├── sql/
+│   └── week2_agribusiness.sql
+│
+├── er-diagram/
+│   └── agribusiness_er_diagram.png
+│
+├── report/
+│   └── Week_2_Project_Report.docx
+│
+└── README.md
+```
+
+---
+
+## 🛠️ Tools & Technologies
+
+* **MySQL**
+* **SQL**
+* **MySQL Workbench**
+* **diagrams.net (draw.io)**
+* **Google Docs**
+
+---
+
+## 🎓 Internship Project
 
 **Program:** Yuva Intern Program
 **Organization:** Henry Harvin
 **Internship:** SQL Data Analyst – Agribusiness
-**Project:** Week 2 – Data Modeling and SQL Query Development
+**Project:** Week 2 – Data Modeling & SQL Query Development
 
 **Prepared by:** Yashika
 **September 2026**
-
